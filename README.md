@@ -16,6 +16,40 @@ Device: Raspberry Pi 3\
 OS: Raspberry Pi OS Lite\
 Storage: SD Card
 
+Anschließend drücken wir auf `Next`.
+
+Dort öffnet sich folgendes Fenster:
+![img.png](assets/foto2.png)
+
+Dort klicken wir jetzt auf `Edit Settings`.
+Nun öffnet sich ein neues Fenster, in welchem wir folgende Informationen eintragen:
+![img.png](assets/foto3.png)
+Hostname: `lennart-pi.local`\
+Username: `lennart` (frei wählbar)\
+Password: `********`(Wir melden uns später über unseren SSH-Key an und deaktivieren den Passwort-Login, kann daher leer bleiben)\
+WLAN: in unserem Fall `Labor-Client` & Passwort (ggf. ein bei euch verfügbares WLAN)
+Locale Settings: `Europe/Berlin`
+Keyboard layout: `de` (In meinem Fall de, weil QUERTZ Layout, wenn das nicht gesetzt wird dann ist es später nervig die Tastatur zu nutzen)
+
+Nun geht es in den nächsten Tab, Services:
+![img.png](assets/foto4.png)
+Dort wählen wir den zweiten Punkt\
+`[] Allow public-key authentication only`
+
+In das Feld darunter kopiert ihr euren Public Key.\
+(Diesen findet ihr unter `~/.ssh/ssh-ed25519.pub` bzw. ggf. als `id_rsa.pub` falls ihr noch RSA Schlüssel nutzt.)
+
+Anschließend können wir im dritten Tab noch alle drei Haken setzen.
+Das ist jedoch optional und nicht erforderlich.
+![img.png](assets/foto5.png)
+
+Nun klicken wir auf `Save` um die Einstellungen zu speichern.
+Anschließend schließt sich das Fenster wieder und wir landen wieder im vorherigen Menü:
+![img.png](assets/foto2.png)
+
+Dort klicken wir jetzt auf `Yes` und der Imager schreibt nun unser Raspberry OS auf unsere SD-Karte.\
+Sobald das fertig ist, wird das Gerät ausgeworfen und wir können es in den Raspberry Pi einstecken und diesen an den Strom anschließen.
+
 ### Schritt 2
 Verbindung via. SSH testen, dafür nutzen wir das zuvor konfigurierte Gerät.
 Wir haben als Hostname `lennart-pi.local` festgelegt und als nutzer `lennart`.
