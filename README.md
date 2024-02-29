@@ -7,7 +7,7 @@
 
 ## Aufgabe 1
 ### Schritt 1
-Über den Raspberry Pi Imager wurde die erste initiale Konfiguration vorgenommen.
+Über den Raspberry Pi Imager wurde die erste initiale Konfiguration vorgenommen.\
 Wenn wir den Imager öffnen erhalten wir folgende Ansicht:
 
 Dort stellen wir folgende Dinge ein:\
@@ -18,7 +18,7 @@ Storage: SD Card
 ![img.png](assets/foto1.png)\
 Anschließend drücken wir auf `Next`.
 
-Dort öffnet sich folgendes Fenster:\
+Folgendes Fenster öffnet sich nun:\
 ![img.png](assets/foto2.png)\
 Dort klicken wir jetzt auf `Edit Settings`.
 
@@ -27,11 +27,11 @@ Nun öffnet sich ein neues Fenster, in welchem wir folgende Informationen eintra
 Hostname: `lennart-pi.local`\
 Username: `lennart` (frei wählbar)\
 Password: `********`(Wir melden uns später über unseren SSH-Key an und deaktivieren den Passwort-Login, kann daher leer bleiben)\
-WLAN: in unserem Fall `Labor-Client` & Passwort (ggf. ein bei euch verfügbares WLAN)
-Locale Settings: `Europe/Berlin`
+WLAN: in unserem Fall `Labor-Client` & Passwort (ggf. ein bei euch verfügbares WLAN)\
+Locale Settings: `Europe/Berlin`\
 Keyboard layout: `de` (In meinem Fall de, weil QUERTZ Layout, wenn das nicht gesetzt wird dann ist es später nervig die Tastatur zu nutzen)
 
-Nun geht es in den nächsten Tab, Services:
+Nun geht es in den nächsten Tab, Services:\
 ![img.png](assets/foto4.png)\
 Dort wählen wir den zweiten Punkt\
 `[] Allow public-key authentication only`
