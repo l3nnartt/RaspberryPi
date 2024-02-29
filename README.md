@@ -78,6 +78,7 @@ lennart@lennart-pi:~ $
 Nun wollen wir, dass der Raspberry Pi in den Schul-Hotspot kommt.
 Dieser ist ein WLAN-Netzwerk, welches über einen Radius Server geschützt ist.
 Die Herausforderung ist also unsere Zugangsdaten auf dem Pi gehasht zu hinterlegen.
+Unsere aktuelle Konfiguration nach der Installation sieht folgendermaßen aus:\
 ```
 lennart@lennart-pi:~ $ sudo cat /etc/wpa_supplicant/wpa_supplicant.conf
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -86,5 +87,40 @@ update_config=1
 network={
         ssid="Labor-Client"
         psk=578abce8e3f9a9a00cb37328f78a7166a5017d077a4dcd480074887318649231
+}
+```
+
+Diese wollen wir jetzt anpassen bzw. erweitern, dazu ergänzen wir folgende Zeilen:\
+```
+network={
+    ssid="YourSSID"
+    key_mgmt=WPA-EAP
+    eap=PEAP
+    identity="YourUsername"
+    password="YourPassword"
+    phase2="auth=MSCHAPV2"
+}
+```
+
+Neben dem zweiten Block ergänzen wir noch `priority` damit es einen Fallback auf die erste Option bzw. SSID gibt.\
+Unsere Datei sieht am Ende also folgendermaßen aus:\
+```
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+        ssid="Labor-Client"
+        psk=578abce8e3f9a9a00cb37328f78a7166a5017d077a4dcd480074887318649231
+        priority=2
+}
+
+network={
+    ssid="Schul-Hotspot"
+    key_mgmt=WPA-EAP
+    eap=PEAP
+    identity="lennart"
+    password="*********"
+    phase2="auth=MSCHAPV2"
+    priority=1
 }
 ```
