@@ -131,7 +131,7 @@ network={
 }
 ```
 
-> [!WARN]
+> [!NOTE]
 > Damit die Verbindung erfolgreich hergestellt werden kann, musste ich den oberen Network Block auskommentieren
 
 Nun müssen wir unseren Pi einmal neustarten.\
