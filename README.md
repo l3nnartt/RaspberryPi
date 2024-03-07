@@ -131,6 +131,9 @@ network={
 }
 ```
 
+> [!WARN]
+> Damit die Verbindung erfolgreich hergestellt werden kann, musste ich den oberen Network Block auskommentieren
+
 Nun müssen wir unseren Pi einmal neustarten.\
 Anschließend sehen wir mit dem Befehl `ip a` dass wir auf dem Interface wlan0 die IP-Adresse `10.109.131.179` erhalten haben.\
 ```
