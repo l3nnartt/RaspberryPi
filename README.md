@@ -90,7 +90,8 @@ network={
 }
 ```
 
-Diese wollen wir jetzt anpassen bzw. erweitern, dazu ergänzen wir folgende Zeilen:
+Diese wollen wir jetzt anpassen bzw. erweitern.\
+Wir nutzen dafür den `nano` command, dieser lautet dann `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf` und dort ergänzen wir folgende Zeilen:\
 ```
 network={
     ssid="YourSSID"
@@ -115,12 +116,16 @@ network={
 }
 
 network={
-    ssid="Schul-Hotspot"
-    key_mgmt=WPA-EAP
-    eap=PEAP
-    identity="lennart"
-    password="*********"
-    phase2="auth=MSCHAPV2"
-    priority=1
+        ssid="Schul-Hotspot"
+        proto=RSN
+        key_mgmt=WPA-EAP
+        pairwise=CCMP
+        auth_alg=OPEN
+        eap=PEAP
+        identity="lennart213"
+        password="*****"
+        phase1="peaplabel=0"
+        phase2="auth=MSCHAPV2"
+        priority=1
 }
 ```
