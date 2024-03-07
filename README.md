@@ -130,3 +130,30 @@ network={
         priority=1
 }
 ```
+
+Nun müssen wir unseren Pi einmal neustarten.\
+Anschließend sehen wir mit dem Befehl `ip a` dass wir auf dem Interface wlan0 die IP-Adresse `10.109.131.179` erhalten haben.\
+```
+lennart@lennart-pi:~ $ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether b8:27:eb:eb:85:b3 brd ff:ff:ff:ff:ff:ff
+    inet 169.254.172.37/16 brd 169.254.255.255 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::49f9:e1be:5876:2160/64 scope link
+       valid_lft forever preferred_lft forever
+3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether b8:27:eb:be:d0:e6 brd ff:ff:ff:ff:ff:ff
+    inet 10.109.131.179/16 brd 10.109.255.255 scope global dynamic noprefixroute wlan0
+       valid_lft 56559sec preferred_lft 49359sec
+    inet6 fe80::6349:a590:f663:7689/64 scope link
+       valid_lft forever preferred_lft forever
+lennart@lennart-pi:~ $
+```
+
+Die Verbindung zum Schul-Hotsport ist erfolgreich!
