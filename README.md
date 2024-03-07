@@ -108,12 +108,13 @@ Unsere Datei sieht am Ende also folgendermaßen aus:
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
+country=DE
 
-network={
-        ssid="Labor-Client"
-        psk=578abce8e3f9a9a00cb37328f78a7166a5017d077a4dcd480074887318649231
-        priority=2
-}
+#network={
+#        ssid="Labor-Client"
+#        psk=578abce8e3f9a9a00cb37328f78a7166a5017d077a4dcd480074887318649231
+#        priority=2
+#}
 
 network={
         ssid="Schul-Hotspot"
