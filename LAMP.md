@@ -77,6 +77,11 @@ def Main():
         else:
             led.off()
             print(normalTempText)
+            insertIntoSQL(None)
+
+# methode weil faul für clean timestamp
+def getTimeAndDate():
+    return time.strftime('%H:%M:%S %d-%m-%Y')
 
 def sendMail(Subject, Text):
     msg = MIMEMultipart()
