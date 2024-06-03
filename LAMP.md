@@ -1,6 +1,6 @@
 # LAMPE & TEMPERATUR
 
-In einer vorherigen Stunde war es unsere Aufgabe ein Script zu schreiben welches die Temperatur eines Temperatur Sensors ausliest.
+In einer vorherigen Stunde war es unsere Aufgabe ein Script zu schreiben, welches die Temperatur mit der Hilfe eines Sensors ausliest.
 Dafür mussten wir etwas vorarbeitet leisten, dazu haben wir folgendes Tutorial genutzt:
 https://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/
 
@@ -33,10 +33,13 @@ Das Script dazu sieht schlussendlich wie folgt aus:
 import time
 from gpiozero import LED
 
-# mail imports
+# Mail
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+# SQL/Datenbank
+import mysql.connector
 
 # Variablen
 highTemp = 30
@@ -53,6 +56,14 @@ empfaenger = "RECEIVER"
 passwort = "PASSWORT"
 smtpserver = "SERVER"
 smtpport = 465
+server = smtplib.SMTP_SSL(smtpserver, smtpport)
+
+# MySQL Konfiguration
+mydb = mysql.connector.connect(
+  host="HOST",
+  user="USER",
+  password="PASSWORT"
+)
 
 def getTemp():
     with open(path) as file:
@@ -63,6 +74,7 @@ def getTemp():
 
 
 def Main():
+    server.login(sender, passwort)
     sendMail("Temperaturüberwachung gestartet", "Das Programm zur Temperaturüberwachung wurde gestartet!")
     while True:
         print("Temp: ", getTemp())
@@ -70,10 +82,12 @@ def Main():
             print(highTempText)
             led.on()
             sendMail("Temperatur zu hoch!", "Die Temperatur ist zu hoch! \n " + str(getTemp()) + "°C")
+            insertIntoSQL("Temperatur zu hoch!")
         elif(getTemp() < lowTemp):
             print(lowTempText)
             led.on()
             sendMail("Temperatur zu niedrig!", "Die Temperatur ist zu niedrig!  \n " + str(getTemp()) + "°C")
+            insertIntoSQL("Temperatur zu niedrig!")
         else:
             led.off()
             print(normalTempText)
@@ -83,18 +97,27 @@ def Main():
 def getTimeAndDate():
     return time.strftime('%H:%M:%S %d-%m-%Y')
 
+# Send Mail
 def sendMail(Subject, Text):
     msg = MIMEMultipart()
     msg['From'] = sender
     msg['To'] = empfaenger
     msg['Subject'] = Subject
     msg.attach(MIMEText(Text, 'plain'))
-    # on every method call we start this, rework!!
-    server = smtplib.SMTP_SSL(smtpserver, smtpport)
-    server.login(sender, passwort)
     server.sendmail(sender, empfaenger, msg.as_string())
-    server.quit()
+
+# Database Entry
+def insertIntoSQL(comment):
+    mycursor = mydb.cursor()
+    sql = "INSERT INTO database.temperatur (temp, comment) VALUES (%s, %s)"
+    val = (getTemp(), comment)
+    mycursor.execute(sql, val)
+    mydb.commit()
 
 if __name__ == "__main__":
     Main()
-```
+
+Als Addon schreiben wir unsere Temperatur Daten in eine MySQL Datenbank.
+Im Idealfall nutzen wir eine Timeseries Database dafür wie Influx oder Prometheus.
+MySQL ist nicht unbedingt die erste Wahl für Logging bzw. um Metriken zu speichern.
+
