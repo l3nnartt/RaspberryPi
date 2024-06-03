@@ -116,8 +116,12 @@ def insertIntoSQL(comment):
 
 if __name__ == "__main__":
     Main()
+```
 
 Als Addon schreiben wir unsere Temperatur Daten in eine MySQL Datenbank.
 Im Idealfall nutzen wir eine Timeseries Database dafür wie Influx oder Prometheus.
 MySQL ist nicht unbedingt die erste Wahl für Logging bzw. um Metriken zu speichern.
 
+Zur Visualisierung der Daten nutzen wir anschließend die Software Grafana.
+Ich habe dazu ein Public Dashboard erstellt, welchem man den Temperaturverlauf während der Unterrichtsstunde entnehmen kann.
+https://l3nnartt.grafana.net/public-dashboards/9eac86cbfb7f46fa8a5295ecab5c9102
